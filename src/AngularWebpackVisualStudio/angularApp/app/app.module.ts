@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
     imports: [
@@ -18,6 +19,9 @@ import { StoreModule } from '@ngrx/store';
         CoreModule.forRoot(),
         HomeModule,
         StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25 //  Retains last 25 states
+        }),
         EffectsModule.forRoot([])
     ],
 
