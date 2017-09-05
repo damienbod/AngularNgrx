@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';
 
 import * as thingsAction from './thing.action';
 import { Thing } from './../../models/thing';
-import { ThingService } from "../../core/services/thing-data.service";
+import { ThingService } from '../../core/services/thing-data.service';
 
 @Injectable()
 export class ThingsEffects {

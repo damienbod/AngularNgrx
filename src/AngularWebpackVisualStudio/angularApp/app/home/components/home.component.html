@@ -2,16 +2,16 @@
 
     <h1>Home component</h1>
 
-    <!--<div class="row">
+    <div class="row">
         <form class="form-inline" (ngSubmit)="addThing()" #thingForm="ngForm">
             <div class="form-group">
                 <label class="sr-only" for="exampleInputThing">Thing</label>
-                <input type="text" class="form-control" id="exampleInputThing" placeholder="Name of the thing ..." name="thing" [(ngModel)]="thing.name"
+                <input type="text" class="form-control" id="exampleInputThing" placeholder="Name of the thing ..." name="thing" [(ngModel)]="(homeState$|async).selectedThing.name"
                     required>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!thingForm.valid">Create new Thing</button>
         </form>
-    </div>-->
+    </div>
 
     <div class="row" *ngIf="(homeState$|async).things.length > 0">
         <div class="table-responsive">
