@@ -18,6 +18,13 @@ export function thingsReducer(state = initialState, action: thingsAction.Actions
             });
         }
 
+        case thingsAction.SELECTALL_COMPLETE:
+            return Object.assign({}, state, {
+                things: action.things,
+                selectedItem: new Thing()
+            });
+
+
         default:
             return state;
 
