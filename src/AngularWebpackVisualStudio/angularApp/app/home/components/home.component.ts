@@ -14,7 +14,6 @@ import * as HomeActions from '../store/thing.action';
 export class HomeComponent implements OnInit {
 
     homeState$: Observable<HomeState>;
-    thing: Thing
 
     constructor(private store: Store<any>) {
         this.homeState$ = this.store.select<HomeState>(state => state);
