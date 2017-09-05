@@ -13,6 +13,7 @@ import * as HomeActions from '../store/thing.action';
 
 export class HomeComponent implements OnInit {
 
+    thing: Thing = new Thing();
     homeState$: Observable<HomeState>;
 
     constructor(private store: Store<any>) {
