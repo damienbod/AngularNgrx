@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { Thing } from './../../models/thing';
 import { HomeState } from '../store/home.state';
 import * as HomeActions from '../store/thing.action';
+import { Thing } from './../../models/thing';
 
 @Component({
     selector: 'app-home-component',
@@ -12,6 +12,8 @@ import * as HomeActions from '../store/thing.action';
 })
 
 export class HomeComponent implements OnInit {
+
+    public async: any;
 
     thing: Thing = new Thing();
     homeState$: Observable<HomeState>;
@@ -25,10 +27,10 @@ export class HomeComponent implements OnInit {
     }
 
     public addThing() {
-        // TODO
+        this.store.dispatch(new HomeActions.AddAction(this.thing));
     }
 
     public deleteThing(thing: Thing) {
-        // TODO
+        this.store.dispatch(new HomeActions.DeleteAction(thing));
     }
 }

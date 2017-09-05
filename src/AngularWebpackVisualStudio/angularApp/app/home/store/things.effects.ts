@@ -25,6 +25,17 @@ export class ThingsEffects {
                 })
         );
 
+    @Effect() deleteThing$: Observable<Action> = this.actions$.ofType(thingsAction.DELETE)
+        .switchMap((action: thingsAction.DeleteAction) =>
+            this.thingService.delete(action.thing.id)
+                .map(() => {
+                    return new thingsAction.DeleteCompleteAction(action.thing);
+                })
+                .catch((error: any) => {
+                    return of({ type: 'LOGIN_FAILED' })
+                })
+        );
+
     @Effect() getAll$: Observable<Action> = this.actions$.ofType(thingsAction.SELECTALL)
         .switchMap(() =>
             this.thingService.getAll()

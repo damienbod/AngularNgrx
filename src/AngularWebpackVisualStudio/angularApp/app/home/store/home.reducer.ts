@@ -18,6 +18,13 @@ export function thingsReducer(state = initialState, action: thingsAction.Actions
             });
         }
 
+        case thingsAction.DELETE_COMPLETE: {
+            return Object.assign({}, state, {
+                things: state.things.filter(item => item.id !== action.thing.id),
+                selectedThing: new Thing()
+            });
+        }
+
         case thingsAction.SELECTALL_COMPLETE:
             return Object.assign({}, state, {
                 things: action.things,
