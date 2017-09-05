@@ -19,61 +19,61 @@ export const SELECTALL_COMPLETE = '[Thing] Select All Complete';
 export class AddAction implements Action {
     readonly type = ADD;
 
-    constructor(public payload: string) { }
+    constructor(public thing: Thing) { }
 }
 
 export class AddCompleteAction implements Action {
     readonly type = ADD_COMPLETE;
 
-    constructor(public payload: Thing[]) { }
+    constructor(public thing: Thing) { }
 }
 
 export class UpdateAction implements Action {
     readonly type = UPDATE;
 
-    constructor(public payload: string) { }
+    constructor(public thing: Thing) { }
 }
 
 export class UpdateCompleteAction implements Action {
     readonly type = UPDATE_COMPLETE;
 
-    constructor(public payload: Thing[]) { }
+    constructor(public thing: Thing) { }
 }
 
 export class DeleteAction implements Action {
     readonly type = DELETE;
 
-    constructor(public payload: string) { }
+    constructor(public thing: Thing) { }
 }
 
 export class DeleteCompleteAction implements Action {
     readonly type = DELETE_COMPLETE;
 
-    constructor(public payload: Thing[]) { }
+    constructor(public thing: Thing) { }
 }
 
 export class SelectAction implements Action {
     readonly type = SELECT;
 
-    constructor(public payload: string) { }
+    constructor(public thing: Thing) { }
 }
 
 export class SelectCompleteAction implements Action {
     readonly type = SELECT_COMPLETE;
 
-    constructor(public payload: Thing[]) { }
+    constructor(public thing: Thing) { }
 }
 
 export class SelectAllAction implements Action {
     readonly type = SELECTALL;
 
-    constructor(public payload: string) { }
+    constructor() { }
 }
 
 export class SelectAllCompleteAction implements Action {
     readonly type = SELECTALL_COMPLETE;
 
-    constructor(public payload: Thing[]) { }
+    constructor(public things: Thing[]) { }
 }
 
 export type Actions
