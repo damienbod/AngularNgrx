@@ -1,6 +1,6 @@
 ﻿<div class="container-fluid">
 
-    <h1>{{message}}</h1>
+    <h1>Home component</h1>
 
     <div class="row">
         <form class="form-inline" (ngSubmit)="addThing()" #thingForm="ngForm">
@@ -13,7 +13,7 @@
         </form>
     </div>
 
-    <div class="row" *ngIf="things.length > 0">
+    <div class="row" *ngIf="(homeState$|async)?.things?.length > 0">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let thing of things; let i = index">
+                    <tr *ngFor="let thing of (homeState$|async)?.things; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{thing.name}}</td>
                         <td class="text-right">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="things.length <= 0">
+    <div class="row" *ngIf="(homeState$|async)?.things?.length <= 0">
         <span>No items found</span>
     </div>
 

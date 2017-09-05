@@ -6,12 +6,21 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home.component';
 import { HomeRoutes } from './home.routes';
 
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { ThingsEffects } from './store/things.effects';
+import { thingsReducer } from './store/home.reducer';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         HttpClientModule,
-        HomeRoutes
+        HomeRoutes,
+        StoreModule.forFeature('home', {
+            thingsItems: thingsReducer,
+        }),
+        EffectsModule.forFeature([ThingsEffects])
     ],
 
     declarations: [

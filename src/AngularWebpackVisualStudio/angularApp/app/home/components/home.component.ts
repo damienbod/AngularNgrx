@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
-import { ThingService } from './../../core/services/thing-data.service';
+import { HomeState } from '../store/home.state';
+import * as HomeActions from '../store/thing.action';
 import { Thing } from './../../models/thing';
 
 @Component({
@@ -10,46 +13,24 @@ import { Thing } from './../../models/thing';
 
 export class HomeComponent implements OnInit {
 
-    public message: string;
-    public things: Thing[] = [];
-    public thing: Thing = new Thing();
+    public async: any;
 
-    constructor(private dataService: ThingService) {
-        this.message = 'Things from the ASP.NET Core API';
+    thing: Thing = new Thing();
+    homeState$: Observable<HomeState>;
+
+    constructor(private store: Store<any>) {
+        this.homeState$ = this.store.select<HomeState>(state => state.home.thingsItems);
     }
 
     ngOnInit() {
-        this.getAllThings();
+        this.store.dispatch(new HomeActions.SelectAllAction());
     }
 
     public addThing() {
-        this.dataService
-            .add(this.thing)
-            .subscribe(() => {
-                this.getAllThings();
-                this.thing = new Thing();
-            }, (error) => {
-                console.log(error);
-            });
+        this.store.dispatch(new HomeActions.AddAction(this.thing));
     }
 
     public deleteThing(thing: Thing) {
-        this.dataService
-            .delete(thing.id)
-            .subscribe(() => {
-                this.getAllThings();
-            }, (error) => {
-                console.log(error);
-            });
-    }
-
-    private getAllThings() {
-        this.dataService
-            .getAll()
-            .subscribe(
-            data => this.things = data,
-            error => console.log(error),
-            () => console.log('Get all complete')
-            );
+        this.store.dispatch(new HomeActions.DeleteAction(thing));
     }
 }
