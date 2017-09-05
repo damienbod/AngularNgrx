@@ -11,12 +11,13 @@ export const initialState: HomeState = {
 export function thingsReducer(state = initialState, action: thingsAction.Actions): HomeState {
     switch (action.type) {
 
-        //case thingsAction.AddCompleteAction: {
-        //    return Object.assign({}, state, {
-        //        foodItems: state.things.concat(thingsAction.AddCompleteAction.things),
-        //        selectedItem: new Thing()
-        //    });
-        //}
+        case thingsAction.ADD_COMPLETE: {
+            return Object.assign({}, state, {
+                things: state.things.concat(action.thing),
+                selectedThing: new Thing()
+            });
+        }
+
         default:
             return state;
 
