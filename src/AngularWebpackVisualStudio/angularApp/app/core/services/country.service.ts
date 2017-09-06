@@ -30,5 +30,4 @@ export class CountryService {
     getAllPerSubRegion(subRegion: string): Observable<Country[]> {
         return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/subregion/${subRegion}`, { headers: this.headers });
     }
-  
 }
