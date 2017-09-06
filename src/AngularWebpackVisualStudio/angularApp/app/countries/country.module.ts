@@ -18,7 +18,7 @@ import { countryReducer } from './store/country.reducer';
         HttpClientModule,
         CountryRoutes,
         StoreModule.forFeature('country', {
-            thingsItems: countryReducer,
+            countries: countryReducer,
         }),
         EffectsModule.forFeature([CountryEffects])
     ],

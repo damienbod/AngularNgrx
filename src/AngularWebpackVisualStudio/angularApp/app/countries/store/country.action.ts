@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 import { Country } from './../../models/country';
 
-export const SELECTALL = '[country] Select All';
-export const SELECTALL_COMPLETE = '[country] Select All Complete';
+export const SELECTALL = '[countries] Select All';
+export const SELECTALL_COMPLETE = '[countries] Select All Complete';
 
 export class SelectAllAction implements Action {
     readonly type = SELECTALL;

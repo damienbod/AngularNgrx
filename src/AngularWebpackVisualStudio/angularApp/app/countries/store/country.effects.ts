@@ -21,10 +21,9 @@ export class CountryEffects {
                     return new countryAction.SelectAllCompleteAction(data);
                 })
                 .catch((error: any) => {
-                    return of({ type: 'LOGIN_FAILED' })
+                    return of({ type: 'getAll_FAILED' })
                 })
         );
-
 
     constructor(
         private countryService: CountryService,

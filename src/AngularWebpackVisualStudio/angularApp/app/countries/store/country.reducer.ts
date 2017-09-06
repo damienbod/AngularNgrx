@@ -8,7 +8,7 @@ export const initialState: CountryState = {
     region: ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 };
 
-export function thingsReducer(state = initialState, action: countryAction.Actions): CountryState {
+export function countryReducer(state = initialState, action: countryAction.Actions): CountryState {
     switch (action.type) {
 
         case countryAction.SELECTALL_COMPLETE:
