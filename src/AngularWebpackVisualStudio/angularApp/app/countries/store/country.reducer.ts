@@ -42,7 +42,8 @@ export function countryReducer(state = initialState, action: countryAction.Actio
                 regions: state.regions.map((item: Region) => {
                     return item.name === action.region.name ? Object.assign({}, item, action.region ) : item;
                 })
-             });
+            });
+
         default:
             return state;
 
