@@ -1,6 +1,6 @@
 ﻿<div class="container-fluid">
     <h1>Country component</h1>
-    <div class="row" *ngIf="(countryState$|async)?.countries?.length > 0">
+    <div class="row" *ngIf="(regionsState$|async)?.regions?.length > 0">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -11,18 +11,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let region of (countryState$|async)?.region; let i = index">
+                    <tr *ngFor="let region of (regionsState$|async)?.regions; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{region.name}}</td>
                         <td class="text-right">
                             <button type="button" class="btn btn-xs btn-danger" (click)="getCountries(region)">&#9660; &#9658; &#160; <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: darkgreen;"></span></button>
+                        </td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-xs btn-danger" (click)="collapse(region)">&#9658;</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="row" *ngIf="(countryState$|async)?.countries?.length <= 0">
+    <div class="row" *ngIf="(regionsState$|async)?.regions?.length <= 0">
         <span>No items found</span>
     </div>
 </div>

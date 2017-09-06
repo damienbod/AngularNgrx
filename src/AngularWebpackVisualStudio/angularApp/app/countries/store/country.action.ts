@@ -28,7 +28,7 @@ export class SelectRegionAction implements Action {
 export class SelectRegionCompleteAction implements Action {
     readonly type = SELECTREGION_COMPLETE;
 
-    constructor(public countries: Country[]) { }
+    constructor(public region: Region) { }
 }
 
 export type Actions

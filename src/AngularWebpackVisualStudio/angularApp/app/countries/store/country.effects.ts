@@ -29,10 +29,11 @@ export class CountryEffects {
         .switchMap((action: countryAction.SelectRegionAction) =>
             this.countryService.getAllPerRegion(action.region.name)
                 .map((data: Country[]) => {
-                    return new countryAction.SelectRegionCompleteAction(data);
+                    const region = { name: action.region.name, expanded: true, countries: data};
+                    return new countryAction.SelectRegionCompleteAction(region);
                 })
                 .catch((error: any) => {
-                    return of({ type: 'getAll_FAILED' })
+                    return of({ type: 'getAllPerRegion$' })
                 })
         );
     constructor(

@@ -16,10 +16,10 @@ export class CountryComponent implements OnInit {
 
     public async: any;
 
-    countryState$: Observable<CountryState>;
+    regionsState$: Observable<CountryState>;
 
     constructor(private store: Store<any>) {
-        this.countryState$ = this.store.select<CountryState>(state => state.country.countries);
+        this.regionsState$ = this.store.select<CountryState>(state => state.world.regions);
     }
 
     ngOnInit() {
@@ -28,5 +28,9 @@ export class CountryComponent implements OnInit {
 
     public getCountries(region: Region) {
         this.store.dispatch(new CountryActions.SelectRegionAction(region));
+    }
+
+    public collapse(region: Region) {
+        // this.store.dispatch(new CountryActions.SelectRegionAction(region));
     }
 }
