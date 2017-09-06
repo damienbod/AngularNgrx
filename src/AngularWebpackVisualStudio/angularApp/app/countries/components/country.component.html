@@ -1,5 +1,25 @@
 ﻿<div class="container-fluid">
-
-    <h1>{{message}}</h1>
-
+    <h1>Country component</h1>
+    <div class="row" *ngIf="(countryState$|async)?.countries?.length > 0">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let country of (countryState$|async)?.countries; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{country.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" *ngIf="(countryState$|async)?.countries?.length <= 0">
+        <span>No items found</span>
+    </div>
 </div>
