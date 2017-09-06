@@ -7,21 +7,34 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th class="text-right"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let region of (regionsState$|async)?.regions; let i = index">
-                            <td>{{i + 1}}</td>
+                    <ng-container *ngFor="let region of (regionsState$|async)?.regions; let i = index">
+                        <tr>
+                            <td class="text-left" *ngIf="!region.expanded">
+                                <span (click)="getCountries(region)">&#9658;</span>
+                            </td>
+                            <td class="text-left" *ngIf="region.expanded">
+                                <span type="button" (click)="collapse(region)">&#9660;</span>
+                            </td>
                             <td>{{region.name}}</td>
-                            <td class="text-right" *ngIf="!region.expanded">
-                                <button type="button" class="btn btn-xs btn-danger" (click)="getCountries(region)">&#9658;</button>
-                            </td>
-                            <td class="text-right" *ngIf="region.expanded">
-                                <button type="button" class="btn btn-xs btn-danger" (click)="collapse(region)">&#9660;</button>
-                            </td>
+                            <td>&#160;</td>
+                            <td>&#160;</td>
                         </tr>
-                  
+                       
+                        <tr *ngFor="let country of region.countries; let i = index">
+                            <td>&#160; &#160; {{i + 1}}</td>
+                            <td>{{country.name}}</td>
+                            <td>population: {{country.population}}</td>
+                            <td>capital: {{country.capital}}</td>
+                            <td><img width="100" [src]="country.flag"></td>
+                        </tr>
+
+                    </ng-container>                                         
                 </tbody>
             </table>
         </div>
