@@ -1,5 +1,6 @@
 import { CountryState } from './country.state';
 import { Country } from './../../models/country';
+import { Region } from './../../models/region';
 import { Action } from '@ngrx/store';
 import * as countryAction from './country.action';
 
@@ -28,6 +29,14 @@ export function countryReducer(state = initialState, action: countryAction.Actio
                     { name: 'Oceania', expanded: false }
                 ]
             });
+
+        case countryAction.SELECTREGION: {
+             return Object.assign({}, state, {
+                region: state.region.map((item: Region) => {
+                    return item.name === action.region.name ? Object.assign({}, item, action.region ) : item;
+                })
+             });
+        }
 
         default:
             return state;

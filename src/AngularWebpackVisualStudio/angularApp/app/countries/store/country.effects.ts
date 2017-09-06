@@ -27,7 +27,7 @@ export class CountryEffects {
 
     @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(countryAction.SELECTREGION)
         .switchMap((action: countryAction.SelectRegionAction) =>
-            this.countryService.getAllPerRegion(action.region)
+            this.countryService.getAllPerRegion(action.region.name)
                 .map((data: Country[]) => {
                     return new countryAction.SelectRegionCompleteAction(data);
                 })

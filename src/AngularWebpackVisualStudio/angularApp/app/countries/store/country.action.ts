@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Country } from './../../models/country';
+import { Region } from './../../models/region';
 
 export const SELECTALL = '[countries] Select All';
 export const SELECTALL_COMPLETE = '[countries] Select All Complete';
@@ -21,7 +22,7 @@ export class SelectAllCompleteAction implements Action {
 export class SelectRegionAction implements Action {
     readonly type = SELECTREGION;
 
-    constructor(public region: string) { }
+    constructor(public region: Region) { }
 }
 
 export class SelectRegionCompleteAction implements Action {

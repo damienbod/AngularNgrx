@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { CountryState } from '../store/country.state';
 import * as CountryActions from '../store/country.action';
 import { Country } from './../../models/country';
+import { Region } from './../../models/region';
 
 @Component({
     selector: 'app-country-component',
@@ -25,7 +26,7 @@ export class CountryComponent implements OnInit {
         this.store.dispatch(new CountryActions.SelectAllAction());
     }
 
-    public getCountries(region: string) {
+    public getCountries(region: Region) {
         this.store.dispatch(new CountryActions.SelectRegionAction(region));
     }
 }
