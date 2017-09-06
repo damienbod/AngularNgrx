@@ -44,6 +44,14 @@ export function countryReducer(state = initialState, action: countryAction.Actio
                 })
             });
 
+        case countryAction.COLLAPSEREGION:
+            action.region.expanded = false;
+            return Object.assign({}, state, {
+                regions: state.regions.map((item: Region) => {
+                    return item.name === action.region.name ? Object.assign({}, item, action.region ) : item;
+                })
+            });
+
         default:
             return state;
 

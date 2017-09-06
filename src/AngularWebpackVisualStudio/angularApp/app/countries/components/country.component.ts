@@ -31,6 +31,6 @@ export class CountryComponent implements OnInit {
     }
 
     public collapse(region: Region) {
-        // this.store.dispatch(new CountryActions.SelectRegionAction(region));
+         this.store.dispatch(new CountryActions.CollapseRegionAction(region));
     }
 }
