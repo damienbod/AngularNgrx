@@ -53,6 +53,7 @@ namespace Angular2WebpackVisualStudio
 
             var angularRoutes = new[] {
                  "/home",
+                 "/countries",
                  "/about"
              };
 
