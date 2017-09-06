@@ -15,8 +15,8 @@ export class CountryService {
     constructor(private http: HttpClient) {
 
         this.headers = new HttpHeaders();
-        this.headers = this.headers.set('Content-Type', 'application/json');
-        this.headers = this.headers.set('Accept', 'application/json');
+        // this.headers = this.headers.set('Content-Type', 'application/json');
+        // this.headers = this.headers.set('Accept', 'application/json');
     }
 
     getAll(): Observable<Country[]> {
