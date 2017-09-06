@@ -13,7 +13,7 @@ export class SelectAllAction implements Action {
 export class SelectAllCompleteAction implements Action {
     readonly type = SELECTALL_COMPLETE;
 
-    constructor(public country: Country[]) { }
+    constructor(public countries: Country[]) { }
 }
 
 export type Actions
