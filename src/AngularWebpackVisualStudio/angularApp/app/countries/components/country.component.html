@@ -13,9 +13,9 @@
                 <tbody>
                     <tr *ngFor="let region of (countryState$|async)?.region; let i = index">
                         <td>{{i + 1}}</td>
-                        <td>{{region}}</td>
+                        <td>{{region.name}}</td>
                         <td class="text-right">
-                            <button type="button" class="btn btn-xs btn-danger" (click)="getCountries(region)">&#9660; &#9658; &#160; <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: darkgreen;"></span></button>
+                            <button type="button" class="btn btn-xs btn-danger" (click)="getCountries(region.name)">&#9660; &#9658; &#160; <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: darkgreen;"></span></button>
                         </td>
                     </tr>
                 </tbody>

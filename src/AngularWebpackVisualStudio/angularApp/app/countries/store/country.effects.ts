@@ -25,6 +25,16 @@ export class CountryEffects {
                 })
         );
 
+    @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(countryAction.SELECTREGION)
+        .switchMap((action: countryAction.SelectRegionAction) =>
+            this.countryService.getAllPerRegion(action.region)
+                .map((data: Country[]) => {
+                    return new countryAction.SelectRegionCompleteAction(data);
+                })
+                .catch((error: any) => {
+                    return of({ type: 'getAll_FAILED' })
+                })
+        );
     constructor(
         private countryService: CountryService,
         private actions$: Actions

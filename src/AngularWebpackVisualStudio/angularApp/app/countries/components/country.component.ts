@@ -26,6 +26,6 @@ export class CountryComponent implements OnInit {
     }
 
     public getCountries(region: string) {
-        // this.store.dispatch(new HomeActions.DeleteAction(thing));
+        this.store.dispatch(new CountryActions.SelectRegionAction(region));
     }
 }
