@@ -19,7 +19,7 @@ export class CountryService {
         this.headers = this.headers.set('Accept', 'application/json');
     }
 
-    getAll(region: string): Observable<Country[]> {
+    getAll(): Observable<Country[]> {
         return this.http.get<Country[]>('https://restcountries.eu/rest/v2/all', { headers: this.headers });
     }
 
