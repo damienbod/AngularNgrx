@@ -9,7 +9,8 @@ import { Region } from './../../models/region';
 
 @Component({
     selector: 'app-country-component',
-    templateUrl: './country.component.html'
+    templateUrl: './country.component.html',
+    styleUrls: ['./country.component.scss']
 })
 
 export class CountryComponent implements OnInit {
