@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Angular2WebpackVisualStudio;
-using Angular2WebpackVisualStudio.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Xunit;
+using Angular2WebpackVisualStudio;
+using Angular2WebpackVisualStudio.Models;
 
 namespace AngularWebpackVisualStudio_Tests
 {

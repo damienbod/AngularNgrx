@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AngularWebpackVisualStudio\AngularWebpackVisualStudio.csproj" />
+    <ProjectReference Include="..\..\src\AngularRedux\AngularRedux.csproj" />
   </ItemGroup>
 
   <ItemGroup>
