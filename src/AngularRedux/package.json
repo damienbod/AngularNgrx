@@ -37,7 +37,7 @@
     "@angular/upgrade": "4.4.0-RC.0",
     "@ngrx/effects": "^4.0.5",
     "@ngrx/store": "^4.0.3",
-    "@ngrx/store-devtools": "^4.0.0 ",
+    "@ngrx/store-devtools": "^4.0.0",
     "angular-in-memory-web-api": "0.3.2",
     "bootstrap": "3.3.7",
     "core-js": "2.5.1",
