@@ -9,18 +9,6 @@ export const SELECTREGION_COMPLETE = '[countries] Select Region Complete';
 
 export const COLLAPSEREGION = '[countries] COLLAPSE Region';
 
-export class SelectAllAction implements Action {
-    readonly type = SELECTALL;
-
-    constructor() { }
-}
-
-export class SelectAllCompleteAction implements Action {
-    readonly type = SELECTALL_COMPLETE;
-
-    constructor(public countries: Country[]) { }
-}
-
 export class SelectRegionAction implements Action {
     readonly type = SELECTREGION;
 
@@ -40,9 +28,7 @@ export class CollapseRegionAction implements Action {
 }
 
 export type Actions
-    = SelectAllAction
-    | SelectAllCompleteAction
-    | SelectRegionAction
+    = SelectRegionAction
     | SelectRegionCompleteAction
     | CollapseRegionAction;
 

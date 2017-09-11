@@ -24,7 +24,6 @@ export class CountryComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.store.dispatch(new CountryActions.SelectAllAction());
     }
 
     public getCountries(region: Region) {

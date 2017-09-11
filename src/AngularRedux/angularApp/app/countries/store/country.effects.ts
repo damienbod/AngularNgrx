@@ -14,17 +14,6 @@ import { CountryService } from '../../core/services/country.service';
 @Injectable()
 export class CountryEffects {
 
-    @Effect() getAll$: Observable<Action> = this.actions$.ofType(countryAction.SELECTALL)
-        .switchMap(() =>
-            this.countryService.getAll()
-                .map((data: Country[]) => {
-                    return new countryAction.SelectAllCompleteAction(data);
-                })
-                .catch((error: any) => {
-                    return of({ type: 'getAll_FAILED' })
-                })
-        );
-
     @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(countryAction.SELECTREGION)
         .switchMap((action: countryAction.SelectRegionAction) =>
             this.countryService.getAllPerRegion(action.region.name)
