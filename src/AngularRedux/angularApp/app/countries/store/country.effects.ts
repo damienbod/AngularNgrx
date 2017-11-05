@@ -15,13 +15,13 @@ import { CountryService } from '../../core/services/country.service';
 export class CountryEffects {
 
     @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(countryAction.SELECTREGION)
-        .switchMap((action: countryAction.SelectRegionAction) =>
-            this.countryService.getAllPerRegion(action.region.name)
+        .switchMap((action: Action) =>
+            this.countryService.getAllPerRegion((action as countryAction.SelectRegionAction).region.name)
                 .map((data: Country[]) => {
-                    const region = { name: action.region.name, expanded: true, countries: data};
+                    const region = { name: (action as countryAction.SelectRegionAction).region.name, expanded: true, countries: data};
                     return new countryAction.SelectRegionCompleteAction(region);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'getAllPerRegion$' })
                 })
         );

@@ -1,6 +1,5 @@
 import { HomeState } from './home.state';
 import { Thing } from './../../models/thing';
-import { Action } from '@ngrx/store';
 import * as thingsAction from './thing.action';
 
 export const initialState: HomeState = {

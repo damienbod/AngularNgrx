@@ -15,23 +15,23 @@ import { ThingService } from '../../core/services/thing-data.service';
 export class ThingsEffects {
 
     @Effect() addThing$: Observable<Action> = this.actions$.ofType(thingsAction.ADD)
-        .switchMap((action: thingsAction.AddAction) =>
-            this.thingService.add(action.thing)
+        .switchMap((action: Action) =>
+            this.thingService.add((action as thingsAction.AddAction).thing)
                 .map((data: Thing) => {
                     return new thingsAction.AddCompleteAction(data);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );
 
     @Effect() deleteThing$: Observable<Action> = this.actions$.ofType(thingsAction.DELETE)
-        .switchMap((action: thingsAction.DeleteAction) =>
-            this.thingService.delete(action.thing.id)
+        .switchMap((action: Action) =>
+            this.thingService.delete((action as thingsAction.DeleteAction).thing.id)
                 .map(() => {
-                    return new thingsAction.DeleteCompleteAction(action.thing);
+                    return new thingsAction.DeleteCompleteAction((action as thingsAction.DeleteAction).thing);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );
@@ -42,7 +42,7 @@ export class ThingsEffects {
                 .map((data: Thing[]) => {
                     return new thingsAction.SelectAllCompleteAction(data);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );

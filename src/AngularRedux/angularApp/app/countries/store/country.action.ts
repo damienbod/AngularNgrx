@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { Country } from './../../models/country';
 import { Region } from './../../models/region';
 
 export const SELECTALL = '[countries] Select All';
