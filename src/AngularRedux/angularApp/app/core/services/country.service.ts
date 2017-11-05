@@ -4,13 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Region } from './../../models/region';
 import { Country } from './../../models/country';
 
 @Injectable()
 export class CountryService {
 
-    private actionUrl: string;
     private headers: HttpHeaders;
 
     constructor(private http: HttpClient) {

@@ -20,7 +20,7 @@ export class ThingsEffects {
                 .map((data: Thing) => {
                     return new thingsAction.AddCompleteAction(data);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );
@@ -31,7 +31,7 @@ export class ThingsEffects {
                 .map(() => {
                     return new thingsAction.DeleteCompleteAction(action.thing);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );
@@ -42,7 +42,7 @@ export class ThingsEffects {
                 .map((data: Thing[]) => {
                     return new thingsAction.SelectAllCompleteAction(data);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'LOGIN_FAILED' })
                 })
         );

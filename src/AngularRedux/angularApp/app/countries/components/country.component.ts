@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { CountryState } from '../store/country.state';
 import * as CountryActions from '../store/country.action';
-import { Country } from './../../models/country';
 import { Region } from './../../models/region';
 
 @Component({
@@ -20,7 +19,7 @@ export class CountryComponent implements OnInit {
     regionsState$: Observable<CountryState>;
 
     constructor(private store: Store<any>) {
-        this.regionsState$ = this.store.select<CountryState>(state => state.world.regions);
+        this.regionsState$ = this.store.select<CountryState>((state: any) => state.world.regions);
     }
 
     ngOnInit() {

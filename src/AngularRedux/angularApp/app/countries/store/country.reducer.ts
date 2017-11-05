@@ -1,7 +1,5 @@
 import { CountryState } from './country.state';
-import { Country } from './../../models/country';
 import { Region } from './../../models/region';
-import { Action } from '@ngrx/store';
 import * as countryAction from './country.action';
 
 export const initialState: CountryState = {

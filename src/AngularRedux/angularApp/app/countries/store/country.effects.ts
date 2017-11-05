@@ -21,7 +21,7 @@ export class CountryEffects {
                     const region = { name: action.region.name, expanded: true, countries: data};
                     return new countryAction.SelectRegionCompleteAction(region);
                 })
-                .catch((error: any) => {
+                .catch(() => {
                     return of({ type: 'getAllPerRegion$' })
                 })
         );
