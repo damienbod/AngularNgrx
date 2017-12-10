@@ -1,11 +1,9 @@
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
 import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Rx';
 
 import * as countryAction from './country.action';
 import { Country } from './../../models/country';
@@ -14,17 +12,17 @@ import { CountryService } from '../../core/services/country.service';
 @Injectable()
 export class CountryEffects {
 
-    @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(countryAction.SELECTREGION)
-        .switchMap((action: Action) =>
-            this.countryService.getAllPerRegion((action as countryAction.SelectRegionAction).region.name)
-                .map((data: Country[]) => {
+    @Effect() getAllPerRegion$ = this.actions$.ofType<countryAction.SelectRegionAction>(countryAction.SELECTREGION).pipe(
+        switchMap((action: countryAction.SelectRegionAction) => {
+            return this.countryService.getAllPerRegion((action).region.name).pipe(
+                map((data: Country[]) => {
                     const region = { name: (action as countryAction.SelectRegionAction).region.name, expanded: true, countries: data};
                     return new countryAction.SelectRegionCompleteAction(region);
-                })
-                .catch(() => {
-                    return of({ type: 'getAllPerRegion$' })
-                })
-        );
+                }),
+                catchError((error: any) => of(error)
+                ))
+        }));
+
     constructor(
         private countryService: CountryService,
         private actions$: Actions
