@@ -1,4 +1,3 @@
-import 'rxjs/add/operator/map';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';

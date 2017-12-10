@@ -1,5 +1,4 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
@@ -14,38 +13,35 @@ import { ThingService } from '../../core/services/thing-data.service';
 @Injectable()
 export class ThingsEffects {
 
-    @Effect() addThing$: Observable<Action> = this.actions$.ofType(thingsAction.ADD)
-        .switchMap((action: Action) =>
-            this.thingService.add((action as thingsAction.AddAction).thing)
-                .map((data: Thing) => {
+    @Effect() addThing$ = this.actions$.ofType<thingsAction.AddAction>(thingsAction.ADD).pipe(
+        switchMap((action: thingsAction.AddAction) => {
+            return this.thingService.add(action.thing).pipe(
+                map((data: Thing) => {
                     return new thingsAction.AddCompleteAction(data);
-                })
-                .catch(() => {
-                    return of({ type: 'LOGIN_FAILED' })
-                })
-        );
+                }),
+                catchError((error: any) => of(error)
+                ))
+        }));
 
-    @Effect() deleteThing$: Observable<Action> = this.actions$.ofType(thingsAction.DELETE)
-        .switchMap((action: Action) =>
-            this.thingService.delete((action as thingsAction.DeleteAction).thing.id)
-                .map(() => {
+    @Effect() deleteThing$ = this.actions$.ofType<thingsAction.DeleteAction>(thingsAction.DELETE).pipe(
+        switchMap((action: thingsAction.DeleteAction) => {
+            return this.thingService.delete(action.thing.id).pipe(
+                map(() => {
                     return new thingsAction.DeleteCompleteAction((action as thingsAction.DeleteAction).thing);
-                })
-                .catch(() => {
-                    return of({ type: 'LOGIN_FAILED' })
-                })
-        );
+                }),
+                catchError((error: any) => of(error)
+                ))
+        }));
 
-    @Effect() getAll$: Observable<Action> = this.actions$.ofType(thingsAction.SELECTALL)
-        .switchMap(() =>
-            this.thingService.getAll()
-                .map((data: Thing[]) => {
+    @Effect() getAll$: Observable<Action> = this.actions$.ofType(thingsAction.SELECTALL).pipe(
+        switchMap(() => {
+            return this.thingService.getAll().pipe(
+                map((data: Thing[]) => {
                     return new thingsAction.SelectAllCompleteAction(data);
-                })
-                .catch(() => {
-                    return of({ type: 'LOGIN_FAILED' })
-                })
-        );
+                }),
+                catchError((error: any) => of(error)
+                ))
+        }));
 
 
     constructor(
