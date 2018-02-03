@@ -20,10 +20,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         CoreModule.forRoot(),
         HomeModule,
         CountryModule,
-        StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
             maxAge: 25 //  Retains last 25 states
         }),
+        StoreModule.forRoot({}),
         EffectsModule.forRoot([])
     ],
 
