@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
+using AngularRedux.Repositories.Things;
 
-namespace Angular2WebpackVisualStudio
+namespace AngularRedux
 {
     public class Startup
     {

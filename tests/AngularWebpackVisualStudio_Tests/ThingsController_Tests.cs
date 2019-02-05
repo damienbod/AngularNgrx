@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using AngularRedux;
+using AngularRedux.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Xunit;
-using Angular2WebpackVisualStudio;
-using Angular2WebpackVisualStudio.Models;
 
 namespace AngularWebpackVisualStudio_Tests
 {
@@ -43,7 +43,7 @@ namespace AngularWebpackVisualStudio_Tests
             var resultsInString = await responseGet.Content.ReadAsStringAsync();
             var restulsInThingsArray = JsonConvert.DeserializeObject<Thing[]>(resultsInString);
 
-            Assert.Equal(restulsInThingsArray.Length, 1);
+            Assert.Single(restulsInThingsArray);
         }
     }
 }

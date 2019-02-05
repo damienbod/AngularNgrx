@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Angular2WebpackVisualStudio.Models;
+using AngularRedux.Models;
 
-namespace Angular2WebpackVisualStudio.Repositories.Things
+namespace AngularRedux.Repositories.Things
 {
     public interface IThingsRepository
     {

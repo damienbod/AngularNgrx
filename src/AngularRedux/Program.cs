@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Angular2WebpackVisualStudio
+namespace AngularRedux
 {
     public class Program
     {

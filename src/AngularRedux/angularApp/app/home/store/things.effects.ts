@@ -3,8 +3,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Rx';
+import { of ,  Observable } from 'rxjs';
 
 import * as thingsAction from './thing.action';
 import { Thing } from './../../models/thing';

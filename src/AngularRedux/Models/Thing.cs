@@ -1,4 +1,4 @@
-﻿namespace Angular2WebpackVisualStudio.Models
+﻿namespace AngularRedux.Models
 {
     public class Thing
     {
