@@ -10,7 +10,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CountryEffects } from './store/country.effects';
 import { countryReducer } from './store/country.reducer';
-import * as countryAction from './store/country.action';
 
 @NgModule({
     imports: [
@@ -18,9 +17,7 @@ import * as countryAction from './store/country.action';
         FormsModule,
         HttpClientModule,
         CountryRoutes,
-        StoreModule.forFeature('world', {
-            regions: countryReducer, countryAction
-        }),
+        StoreModule.forFeature('world', countryReducer),
         EffectsModule.forFeature([CountryEffects])
     ],
 

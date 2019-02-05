@@ -5,11 +5,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Angular2WebpackVisualStudio.Repositories.Things;
-using Angular2WebpackVisualStudio.Models;
+using Microsoft.AspNetCore.Mvc;
+using AngularRedux.Repositories.Things;
 
-namespace Angular2WebpackVisualStudio
+namespace AngularRedux
 {
     public class Startup
     {
@@ -40,17 +39,13 @@ namespace Angular2WebpackVisualStudio
                     });
             });
 
-            // Add framework services.
             services.AddSingleton<IThingsRepository, ThingsRepository>();
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             var angularRoutes = new[] {
                  "/home",
                  "/countries",

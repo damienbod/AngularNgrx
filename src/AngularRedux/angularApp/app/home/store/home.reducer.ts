@@ -3,8 +3,10 @@ import { Thing } from './../../models/thing';
 import * as thingsAction from './thing.action';
 
 export const initialState: HomeState = {
-    things: [],
-    selectedThing: new Thing()
+    home: {
+        things: [],
+        selectedThing: new Thing()
+    }
 };
 
 export function thingsReducer(state = initialState, action: thingsAction.Actions): HomeState {
@@ -12,22 +14,28 @@ export function thingsReducer(state = initialState, action: thingsAction.Actions
 
         case thingsAction.ADD_COMPLETE: {
             return Object.assign({}, state, {
-                things: state.things.concat(action.thing),
-                selectedThing: new Thing()
+                home: {
+                    things: state.home.things.concat(action.thing),
+                    selectedThing: new Thing()
+                }
             });
         }
 
         case thingsAction.DELETE_COMPLETE: {
             return Object.assign({}, state, {
-                things: state.things.filter(item => item.id !== action.thing.id),
-                selectedThing: new Thing()
+                home: {
+                    things: state.home.things.filter(item => item.id !== action.thing.id),
+                    selectedThing: new Thing()
+                }
             });
         }
 
         case thingsAction.SELECTALL_COMPLETE:
             return Object.assign({}, state, {
-                things: action.things,
-                selectedItem: new Thing()
+                home: {
+                    things: action.things,
+                    selectedItem: new Thing()
+                }
             });
 
 
