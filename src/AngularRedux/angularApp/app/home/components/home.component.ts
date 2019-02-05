@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     homeState$: Observable<HomeState>;
 
     constructor(private store: Store<any>) {
-        this.homeState$ = this.store.select<HomeState>((state: any) => state.home.thingsItems);
+        this.homeState$ = this.store.select<HomeState>((state: any) => state.home);
     }
 
     ngOnInit() {
