@@ -1,4 +1,4 @@
 export class Thing {
-    public id: number = 0;
-    public name: string = '';
+    public id = 0;
+    public name = '';
 }
