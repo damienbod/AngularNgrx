@@ -12,7 +12,8 @@ import { ThingService } from '../../core/services/thing-data.service';
 @Injectable()
 export class ThingsEffects {
 
-    @Effect() addThing$ = this.actions$.ofType<thingsAction.AddAction>(thingsAction.ADD).pipe(
+    @Effect()
+    addThing$ = this.actions$.ofType<thingsAction.AddAction>(thingsAction.ADD).pipe(
         switchMap((action: thingsAction.AddAction) => {
             return this.thingService.add(action.thing).pipe(
                 map((data: Thing) => {
