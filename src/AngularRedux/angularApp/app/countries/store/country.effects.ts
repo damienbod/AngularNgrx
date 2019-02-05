@@ -15,11 +15,11 @@ export class CountryEffects {
         switchMap((action: countryAction.SelectRegionAction) => {
             return this.countryService.getAllPerRegion((action).region.name).pipe(
                 map((data: Country[]) => {
-                    const region = { name: (action as countryAction.SelectRegionAction).region.name, expanded: true, countries: data};
+                    const region = { name: (action as countryAction.SelectRegionAction).region.name, expanded: true, countries: data };
                     return new countryAction.SelectRegionCompleteAction(region);
                 }),
                 catchError((error: any) => of(error)
-                ))
+                ));
         }));
 
     constructor(
