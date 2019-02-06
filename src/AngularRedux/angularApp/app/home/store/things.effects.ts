@@ -1,9 +1,8 @@
-import { catchError, map, switchMap } from 'rxjs/operators';
-
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { of ,  Observable } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as thingsAction from './thing.action';
 import { Thing } from './../../models/thing';
@@ -13,7 +12,8 @@ import { ThingService } from '../../core/services/thing-data.service';
 export class ThingsEffects {
 
     @Effect()
-    addThing$ = this.actions$.ofType<thingsAction.AddAction>(thingsAction.ADD).pipe(
+    addThing$: Observable<Action> = this.actions$.pipe(
+        ofType<thingsAction.AddAction>(thingsAction.ADD),
         switchMap((action: thingsAction.AddAction) => {
             return this.thingService.add(action.thing).pipe(
                 map((data: Thing) => {
@@ -23,7 +23,9 @@ export class ThingsEffects {
                 ));
         }));
 
-    @Effect() deleteThing$ = this.actions$.ofType<thingsAction.DeleteAction>(thingsAction.DELETE).pipe(
+    @Effect()
+    deleteThing$: Observable<Action> = this.actions$.pipe(
+        ofType<thingsAction.DeleteAction>(thingsAction.DELETE),
         switchMap((action: thingsAction.DeleteAction) => {
             return this.thingService.delete(action.thing.id).pipe(
                 map(() => {
@@ -33,7 +35,9 @@ export class ThingsEffects {
                 ));
         }));
 
-    @Effect() getAll$: Observable<Action> = this.actions$.ofType(thingsAction.SELECTALL).pipe(
+    @Effect()
+    getAll$: Observable<Action> = this.actions$.pipe(
+        ofType(thingsAction.SELECTALL),
         switchMap(() => {
             return this.thingService.getAll().pipe(
                 map((data: Thing[]) => {
