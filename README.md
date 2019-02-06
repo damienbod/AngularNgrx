@@ -2,6 +2,8 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/18i3au6nar5k74kf?svg=true)](https://ci.appveyor.com/project/damienbod/angularredux)
 
+2019-02-06 Updated to Angular 7.2.4, and latest npm, latest NGRX packages
+
 2019-02-05 Updated to Angular 7.2.3, and latest npm, nuget packages
 
 2018-02-03 Updated to Angular 5.2.3, and latest npm, nuget packages
