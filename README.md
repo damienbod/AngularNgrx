@@ -1,5 +1,6 @@
 # Angular CLI using ngrx
 
+![Build(https://github.com/damienbod/AngularNgrx/workflows/CI/badge.svg)](https://github.com/damienbod/AngularNgrx/actions?query=workflow%3ACI)
 
 2021-01-20 Updated to Angular 11.0.9, latest NGRX packages
 
