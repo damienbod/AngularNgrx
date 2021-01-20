@@ -9,10 +9,12 @@ import { AboutComponent } from './components/about.component';
         CommonModule,
         AboutRoutes
     ],
-
     declarations: [
         AboutComponent
     ],
+    exports: [
+      AboutComponent
+  ],
 
 })
 

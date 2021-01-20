@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="(homeState$|async)?.things?.length <= 0">
+    <div class="row" *ngIf="(homeState$|async)?.home.things?.length <= 0">
         <span>No items found</span>
     </div>
 

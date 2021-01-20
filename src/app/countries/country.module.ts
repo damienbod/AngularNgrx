@@ -20,11 +20,9 @@ import { countryReducer } from './store/country.reducer';
         StoreModule.forFeature('world', countryReducer),
         EffectsModule.forFeature([CountryEffects])
     ],
-
     declarations: [
         CountryComponent
     ],
-
     exports: [
         CountryComponent
     ]
