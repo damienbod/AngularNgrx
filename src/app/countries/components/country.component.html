@@ -1,0 +1,47 @@
+﻿<div class="container-fluid">
+    <div class="row" *ngIf="(regionsState$|async)?.regions?.length > 0">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Population</th>
+                        <th>Capital</th>
+                        <th>Flag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let region of (regionsState$|async)?.regions; let i = index">
+                        <tr>
+                            <td class="text-left td-table-region" *ngIf="!region.expanded">
+                                <span (click)="getCountries(region)">&#9658;</span>
+                            </td>
+                            <td class="text-left td-table-region" *ngIf="region.expanded">
+                                <span type="button" (click)="collapse(region)">&#9660;</span>
+                            </td>
+                            <td class="td-table-region">{{region.name}}</td>
+                            <td class="td-table-region">&#160;</td>
+                            <td class="td-table-region">&#160;</td>
+                            <td class="td-table-region">&#160;</td>
+                        </tr>
+                        <ng-container *ngIf="region.expanded">
+                            <tr *ngFor="let country of region.countries; let i = index">
+                                <td class="td-table-country">&#160; &#160; {{i + 1}}</td>
+                                <td class="td-table-country">{{country.name}}</td>
+                                <td class="td-table-country" >{{country.population}}</td>
+                                <td>{{country.capital}}</td>
+                                <td><img width="100" [src]="country.flag"></td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>                                         
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--&#9660; &#9658; &#160; <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: darkgreen;"></span>-->
+    <div class="row" *ngIf="(regionsState$|async)?.regions?.length <= 0">
+        <span>No items found</span>
+    </div>
+</div>
