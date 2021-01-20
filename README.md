@@ -1,6 +1,11 @@
 # Angular CLI using ngrx
 
-![CI(https://github.com/damienbod/AngularNgrx/workflows/CI/badge.svg)](https://github.com/damienbod/AngularNgrx/actions?query=workflow%3ACI)
+[![Build](https://github.com/damienbod/AngularNgrx/workflows/CI/badge.svg)](https://github.com/damienbod/AngularNgrx/actions?query=workflow%3ACI)
+
+
+https://damienbod.com/2017/09/07/getting-started-with-angular-and-redux/
+
+## History 
 
 2021-01-20 Updated to Angular 11.0.9, latest NGRX packages
 
