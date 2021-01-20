@@ -33,11 +33,11 @@ jobs:
               run: sudo npm install
 
             - name: Linting Frontend
-              run: sudo npm run lint-lib
+              run: sudo npm run lint
 
             - name: Testing Frontend
               run: sudo npm run test
 
             - name: Building Frontend
-              run: sudo npm run build-lib-prod
+              run: sudo npm run build
 
