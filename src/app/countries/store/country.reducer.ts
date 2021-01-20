@@ -23,10 +23,14 @@ export function countryReducer(state = initialState, action: countryAction.Actio
             });
 
         case countryAction.COLLAPSEREGION:
-            action.region.expanded = false;
+            const regionNew = {
+              expanded: false,
+              name: action.region.name,
+              countries: [] //action.region.countries
+            };
             return Object.assign({}, state, {
                 regions: state.regions.map((item: Region) => {
-                    return item.name === action.region.name ? Object.assign({}, item, action.region ) : item;
+                    return item.name === action.region.name ? Object.assign({}, item, regionNew ) : item;
                 })
             });
 

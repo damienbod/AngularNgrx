@@ -19,17 +19,17 @@ export class CountryComponent implements OnInit {
     regionsState$: Observable<CountryState>;
 
     constructor(private store: Store<any>) {
-        this.regionsState$ = this.store.select<CountryState>((state: any) => state.world);
+      this.regionsState$ = this.store.select<CountryState>((state: any) => state.world);
     }
 
     ngOnInit() {
     }
 
     public getCountries(region: Region) {
-        this.store.dispatch(new CountryActions.SelectRegionAction(region));
+      this.store.dispatch(new CountryActions.SelectRegionAction(region));
     }
 
     public collapse(region: Region) {
-         this.store.dispatch(new CountryActions.CollapseRegionAction(region));
+      this.store.dispatch(new CountryActions.CollapseRegionAction(region));
     }
 }
