@@ -13,7 +13,7 @@ import { Thing } from './../../models/thing';
 
 export class HomeComponent implements OnInit {
 
-    public async: any;
+    async: any;
 
     thing: Thing = new Thing();
     homeState$: Observable<HomeState>;
@@ -22,15 +22,15 @@ export class HomeComponent implements OnInit {
         this.homeState$ = this.store.select<HomeState>((state: any) => state.home);
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.store.dispatch(new HomeActions.SelectAllAction());
     }
 
-    public addThing() {
+    addThing(): void {
         this.store.dispatch(new HomeActions.AddAction(this.thing));
     }
 
-    public deleteThing(thing: Thing) {
+    deleteThing(thing: Thing): void {
         this.store.dispatch(new HomeActions.DeleteAction(thing));
     }
 }

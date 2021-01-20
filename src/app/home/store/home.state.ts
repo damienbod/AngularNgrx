@@ -1,10 +1,10 @@
 import { Thing } from './../../models/thing';
 
 export interface HomeState {
-    home: HomeStateContainer
-};
+    home: HomeStateContainer;
+}
 
 export interface HomeStateContainer {
-    things: Thing[],
-    selectedThing: Thing
-};
+    things: Thing[];
+    selectedThing: Thing;
+}

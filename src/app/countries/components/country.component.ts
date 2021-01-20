@@ -12,9 +12,9 @@ import { Region } from './../../models/region';
     styleUrls: ['./country.component.scss']
 })
 
-export class CountryComponent implements OnInit {
+export class CountryComponent {
 
-    public async: any;
+    async: any;
 
     regionsState$: Observable<CountryState>;
 
@@ -22,14 +22,11 @@ export class CountryComponent implements OnInit {
       this.regionsState$ = this.store.select<CountryState>((state: any) => state.world);
     }
 
-    ngOnInit() {
-    }
-
-    public getCountries(region: Region) {
+    getCountries(region: Region): void {
       this.store.dispatch(new CountryActions.SelectRegionAction(region));
     }
 
-    public collapse(region: Region) {
+    collapse(region: Region): void {
       this.store.dispatch(new CountryActions.CollapseRegionAction(region));
     }
 }

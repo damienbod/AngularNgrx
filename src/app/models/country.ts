@@ -11,8 +11,8 @@ export class Country {
     public population = 0;
     public latlng: number[] = [];
     public demonym = '';
-    public area: number = 0;
-    public gini: number = 0;
+    public area = 0;
+    public gini = 0;
     public timezones: string[] = [];
     public borders: string[] = [];
     public nativeName = '';
@@ -20,6 +20,6 @@ export class Country {
     public currencies: any[] = [];
     public languages: any[] = [];
     public translations: any[] = [];
-    public flag = '';;
+    public flag = '';
     public regionalBlocs: any[] = [];
 }

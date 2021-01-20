@@ -26,7 +26,7 @@ export function countryReducer(state = initialState, action: countryAction.Actio
             const regionNew = {
               expanded: false,
               name: action.region.name,
-              countries: [] //action.region.countries
+              countries: [] // action.region.countries
             };
             return Object.assign({}, state, {
                 regions: state.regions.map((item: Region) => {
