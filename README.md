@@ -1,6 +1,7 @@
-# Angular with Redux using ngrx
+# Angular CLI using ngrx
 
-[![Build status](https://ci.appveyor.com/api/projects/status/18i3au6nar5k74kf?svg=true)](https://ci.appveyor.com/project/damienbod/angularredux)
+
+2021-01-20 Updated to Angular 11.0.9, latest NGRX packages
 
 2019-02-06 Updated to Angular 7.2.4, and latest npm, latest NGRX packages
 
