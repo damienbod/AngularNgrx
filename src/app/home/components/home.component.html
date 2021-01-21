@@ -13,7 +13,8 @@
         </form>
     </div>
 
-    <div class="row" *ngIf="(homeState$|async)?.things?.length > 0">
+    <div *ngIf="(things$|async) as things">
+      <div class="row" *ngIf="things?.length > 0 ; else noitemsfound">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -24,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let thing of (homeState$|async)?.things; let i = index">
+                    <tr *ngFor="let thing of things; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{thing.name}}</td>
                         <td class="text-right">
@@ -34,10 +35,13 @@
                 </tbody>
             </table>
         </div>
+      </div>
     </div>
 
-    <div class="row" *ngIf="(homeState$|async)?.things?.length <= 0">
+    <ng-template #noitemsfound>
+      <div class="row">
         <span>No items found</span>
     </div>
+    </ng-template>
 
 </div>

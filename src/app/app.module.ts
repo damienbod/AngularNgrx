@@ -24,7 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         HomeModule,
         CountryModule,
         StoreDevtoolsModule.instrument({
-            maxAge: 25 //  Retains last 25 states
+          name: 'NgRx Demo App',
         }),
         StoreModule.forRoot({}),
         EffectsModule.forRoot([])

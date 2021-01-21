@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { HomeState } from '../store/home.state';
 import * as HomeActions from '../store/thing.action';
@@ -16,10 +17,11 @@ export class HomeComponent implements OnInit {
     async: any;
 
     thing: Thing = new Thing();
-    homeState$: Observable<HomeState>;
+    things$: Observable<Thing[]>;
 
     constructor(private store: Store<any>) {
-        this.homeState$ = this.store.select<HomeState>((state: any) => state.home);
+        this.things$ = this.store.select<any>((state) => state.home)
+        .pipe(map((homeState: HomeState) => homeState.things));
     }
 
     ngOnInit(): void {

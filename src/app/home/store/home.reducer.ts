@@ -28,12 +28,12 @@ const thingsReducerInternal = createReducer(
   on(thingsAction.addThingFinished, (state, { payload }) => ({
     ...state,
     loading: false,
-    items: [...state.things, payload]
+    things: [...state.things, payload]
   })),
   on(thingsAction.selectAllThingsFinished, (state, { payload }) => ({
     ...state,
     loading: false,
-    items: [...payload]
+    things: [...payload]
   })),
   on(thingsAction.selectThing, (state, { payload }) => ({
     ...state,
@@ -43,7 +43,7 @@ const thingsReducerInternal = createReducer(
   on(thingsAction.selectThingFinished, (state, { payload }) => ({
     ...state,
     loading: false,
-    items: [...state.things.filter(x => x !== payload)]
+    things: [...state.things.filter(x => x !== payload)]
   }))
 );
 
