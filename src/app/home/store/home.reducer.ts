@@ -52,9 +52,6 @@ const thingsReducerInternal = createReducer(
   }))
 );
 
-export function thingsReducer(
-  state: HomeState | undefined,
-  action: Action
-) {
+export function thingsReducer( state: HomeState | undefined, action: Action): any {
   return thingsReducerInternal(state, action);
 }

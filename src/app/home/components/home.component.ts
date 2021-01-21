@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
     }
 
     addThing(): void {
-        this.store.dispatch(HomeActions.addThing({payload:this.thing}));
+        this.store.dispatch(HomeActions.addThing({payload: this.thing}));
     }
 
     deleteThing(thing: Thing): void {
-        this.store.dispatch(HomeActions.deleteThing({payload:thing}));
+        this.store.dispatch(HomeActions.deleteThing({payload: thing}));
     }
 }
