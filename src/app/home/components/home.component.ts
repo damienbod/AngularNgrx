@@ -20,19 +20,21 @@ export class HomeComponent implements OnInit {
     things$: Observable<Thing[]>;
 
     constructor(private store: Store<any>) {
-        this.things$ = this.store.select<any>((state) => state.home)
+      this.things$ = this.store.select<any>((state) => state.home)
         .pipe(map((homeState: HomeState) => homeState.things));
     }
 
     ngOnInit(): void {
-        this.store.dispatch(HomeActions.selectAllThings());
+      this.store.dispatch(HomeActions.selectAllThings());
     }
 
     addThing(): void {
-        this.store.dispatch(HomeActions.addThing({payload: this.thing}));
+      const data = {payload: Object.assign(this.thing)};
+      this.store.dispatch(HomeActions.addThing(data));
+      this.thing = new Thing();
     }
 
     deleteThing(thing: Thing): void {
-        this.store.dispatch(HomeActions.deleteThing({payload: thing}));
+      this.store.dispatch(HomeActions.deleteThing({payload: thing}));
     }
 }
