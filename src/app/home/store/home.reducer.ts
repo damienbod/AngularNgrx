@@ -44,6 +44,11 @@ const thingsReducerInternal = createReducer(
     ...state,
     loading: false,
     things: [...state.things.filter(x => x !== payload)]
+  })),
+  on(thingsAction.deleteThingFinished, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    things: [...state.things.filter(x => x !== payload)]
   }))
 );
 
