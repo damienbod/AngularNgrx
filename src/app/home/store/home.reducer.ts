@@ -1,46 +1,55 @@
 import { HomeState } from './home.state';
 import { Thing } from './../../models/thing';
 import * as thingsAction from './thing.action';
+import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: HomeState = {
-    home: {
-        things: [],
-        selectedThing: new Thing()
-    }
+  things: [],
+  selectedThing: null,
+  loading: false
 };
 
-export function thingsReducer(state = initialState, action: thingsAction.Actions): HomeState {
-    switch (action.type) {
+const thingsReducerInternal = createReducer(
+  initialState,
+  on(
+    thingsAction.addThing,
+    thingsAction.addThingFinished,
+    thingsAction.deleteThing,
+    thingsAction.deleteThingFinished,
+    thingsAction.selectAllThings,
+    thingsAction.selectAllThingsFinished,
+    thingsAction.selectThing,
+    thingsAction.selectThingFinished,
+    state => ({
+      ...state,
+      loading: true
+    })
+  ),
+  on(thingsAction.addThingFinished, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    items: [...state.things, payload]
+  })),
+  on(thingsAction.selectAllThingsFinished, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    items: [...payload]
+  })),
+  on(thingsAction.selectThing, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    selectedItem: payload
+  })),
+  on(thingsAction.selectThingFinished, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    items: [...state.things.filter(x => x !== payload)]
+  }))
+);
 
-        case thingsAction.ADD_COMPLETE: {
-            return Object.assign({}, state, {
-                home: {
-                    things: state.home.things.concat(action.thing),
-                    selectedThing: new Thing()
-                }
-            });
-        }
-
-        case thingsAction.DELETE_COMPLETE: {
-            return Object.assign({}, state, {
-                home: {
-                    things: state.home.things.filter(item => item.id !== action.thing.id),
-                    selectedThing: new Thing()
-                }
-            });
-        }
-
-        case thingsAction.SELECTALL_COMPLETE:
-            return Object.assign({}, state, {
-                home: {
-                    things: action.things,
-                    selectedItem: new Thing()
-                }
-            });
-
-
-        default:
-            return state;
-
-    }
+export function thingsReducer(
+  state: HomeState | undefined,
+  action: Action
+) {
+  return thingsReducerInternal(state, action);
 }

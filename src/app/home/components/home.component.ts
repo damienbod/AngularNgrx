@@ -23,14 +23,14 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.store.dispatch(new HomeActions.SelectAllAction());
+        this.store.dispatch(HomeActions.selectAllThings());
     }
 
     addThing(): void {
-        this.store.dispatch(new HomeActions.AddAction(this.thing));
+        this.store.dispatch(HomeActions.addThing({payload:this.thing}));
     }
 
     deleteThing(thing: Thing): void {
-        this.store.dispatch(new HomeActions.DeleteAction(thing));
+        this.store.dispatch(HomeActions.deleteThing({payload:thing}));
     }
 }
