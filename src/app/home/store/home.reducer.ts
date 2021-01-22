@@ -12,40 +12,40 @@ export const initialState: HomeState = {
 const thingsReducerInternal = createReducer(
   initialState,
   on(
-    thingsAction.addThing,
-    thingsAction.addThingFinished,
-    thingsAction.deleteThing,
-    thingsAction.deleteThingFinished,
-    thingsAction.selectAllThings,
-    thingsAction.selectAllThingsFinished,
-    thingsAction.selectThing,
-    thingsAction.selectThingFinished,
+    thingsAction.addThingAction,
+    thingsAction.addThingFinishedAction,
+    thingsAction.deleteThingAction,
+    thingsAction.deleteThingFinishedAction,
+    thingsAction.getAllThingsAction,
+    thingsAction.getAllThingsFinishedAction,
+    thingsAction.getThingAction,
+    thingsAction.getThingFinishedAction,
     state => ({
       ...state,
       loading: true
     })
   ),
-  on(thingsAction.addThingFinished, (state, { payload }) => ({
+  on(thingsAction.addThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
     things: [...state.things, payload]
   })),
-  on(thingsAction.selectAllThingsFinished, (state, { payload }) => ({
+  on(thingsAction.getAllThingsFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
     things: [...payload]
   })),
-  on(thingsAction.selectThing, (state, { payload }) => ({
+  on(thingsAction.getThingAction, (state, { payload }) => ({
     ...state,
     loading: false,
     selectedItem: payload
   })),
-  on(thingsAction.selectThingFinished, (state, { payload }) => ({
+  on(thingsAction.getThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
     things: [...state.things.filter(x => x !== payload)]
   })),
-  on(thingsAction.deleteThingFinished, (state, { payload }) => ({
+  on(thingsAction.deleteThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
     things: [...state.things.filter(x => x !== payload)]

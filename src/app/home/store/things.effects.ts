@@ -12,10 +12,10 @@ export class ThingsEffects {
 
   selectAllThings$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(thingsAction.selectAllThings),
+    ofType(thingsAction.getAllThingsAction),
       switchMap(action =>
         this.thingService.getAll().pipe(
-          map(things => thingsAction.selectAllThingsFinished({ payload: things })),
+          map(things => thingsAction.getAllThingsFinishedAction({ payload: things })),
           catchError(error => of(error))
         )
       )
@@ -24,11 +24,11 @@ export class ThingsEffects {
 
   addThing$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(thingsAction.addThing),
+      ofType(thingsAction.addThingAction),
       map(action => action.payload),
       switchMap(payload =>
         this.thingService.add(payload).pipe(
-          map(todo => thingsAction.addThingFinished({ payload: todo })),
+          map(todo => thingsAction.addThingFinishedAction({ payload: todo })),
           catchError(error => of(error))
         )
       )
@@ -37,11 +37,11 @@ export class ThingsEffects {
 
   deleteThing$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(thingsAction.deleteThing),
+      ofType(thingsAction.deleteThingAction),
       map(action => action.payload),
       switchMap(payload =>
         this.thingService.delete(payload.id).pipe(
-          map(_ => thingsAction.deleteThingFinished({ payload })),
+          map(_ => thingsAction.deleteThingFinishedAction({ payload })),
           catchError(error => of(error))
         )
       )
