@@ -23,10 +23,8 @@ export class CountryEffects {
       ofType(countryAction.getAllCountriesAction),
       switchMap((action) =>
         this.countryService.getAll().pipe(
-          map((payload: Country[]) =>
-            countryAction.getAllCountriesFinishedAction({ payload })
-          ),
-          catchError((error) => of(error))
+          map((payload: Country[]) => countryAction.getAllCountriesFinishedAction({ payload })),
+          catchError(error => of(countryAction.countriesErrorAction(error)))
         )
       )
     )

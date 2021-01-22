@@ -12,8 +12,7 @@ const countryReducerInternal = createReducer(
   on(
     countryAction.getAllCountriesAction,
     countryAction.getAllCountriesFinishedAction,
-    countryAction.getRegionAction,
-    countryAction.getRegionFinishedAction,
+    countryAction.countriesErrorAction,
     (state) => ({
       ...state,
       loading: true,
