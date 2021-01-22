@@ -4,10 +4,9 @@ import * as countryAction from './country.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: CountryState = {
-    countries: [],
-    loading: false
+  countries: [],
+  loading: false,
 };
-
 
 const countryReducerInternal = createReducer(
   initialState,
@@ -17,18 +16,21 @@ const countryReducerInternal = createReducer(
     countryAction.getAllCountriesFinishedAction,
     countryAction.getRegionAction,
     countryAction.getRegionFinishedAction,
-    state => ({
+    (state) => ({
       ...state,
-      loading: true
+      loading: true,
     })
   ),
   on(countryAction.getAllCountriesFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    countries: [...state.countries, ...payload]
+    countries: [...state.countries, ...payload],
   }))
 );
 
-export function countryReducer( state: CountryState | undefined, action: Action): any {
+export function countryReducer(
+  state: CountryState | undefined,
+  action: Action
+): any {
   return countryReducerInternal(state, action);
 }

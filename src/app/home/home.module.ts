@@ -13,22 +13,17 @@ import { thingsReducer } from './store/home.reducer';
 import { homeStoreName } from './store/home.selectors';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        HomeRoutes,
-        StoreModule.forFeature(homeStoreName, thingsReducer),
-        EffectsModule.forFeature([ThingsEffects])
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    HomeRoutes,
+    StoreModule.forFeature(homeStoreName, thingsReducer),
+    EffectsModule.forFeature([ThingsEffects]),
+  ],
 
-    declarations: [
-        HomeComponent
-    ],
+  declarations: [HomeComponent],
 
-    exports: [
-        HomeComponent
-    ]
+  exports: [HomeComponent],
 })
-
-export class HomeModule { }
+export class HomeModule {}

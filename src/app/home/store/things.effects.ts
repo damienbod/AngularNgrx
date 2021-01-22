@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -8,15 +7,17 @@ import { ThingService } from '../../core/services/thing-data.service';
 
 @Injectable()
 export class ThingsEffects {
-  constructor(private thingService: ThingService, private actions$: Actions) { }
+  constructor(private thingService: ThingService, private actions$: Actions) {}
 
   selectAllThings$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(thingsAction.getAllThingsAction),
-      switchMap(action =>
+    this.actions$.pipe(
+      ofType(thingsAction.getAllThingsAction),
+      switchMap((action) =>
         this.thingService.getAll().pipe(
-          map(things => thingsAction.getAllThingsFinishedAction({ payload: things })),
-          catchError(error => of(error))
+          map((things) =>
+            thingsAction.getAllThingsFinishedAction({ payload: things })
+          ),
+          catchError((error) => of(error))
         )
       )
     )
@@ -25,11 +26,11 @@ export class ThingsEffects {
   addThing$ = createEffect(() =>
     this.actions$.pipe(
       ofType(thingsAction.addThingAction),
-      map(action => action.payload),
-      switchMap(payload =>
+      map((action) => action.payload),
+      switchMap((payload) =>
         this.thingService.add(payload).pipe(
-          map(todo => thingsAction.addThingFinishedAction({ payload: todo })),
-          catchError(error => of(error))
+          map((todo) => thingsAction.addThingFinishedAction({ payload: todo })),
+          catchError((error) => of(error))
         )
       )
     )
@@ -38,14 +39,13 @@ export class ThingsEffects {
   deleteThing$ = createEffect(() =>
     this.actions$.pipe(
       ofType(thingsAction.deleteThingAction),
-      map(action => action.payload),
-      switchMap(payload =>
+      map((action) => action.payload),
+      switchMap((payload) =>
         this.thingService.delete(payload.id).pipe(
-          map(_ => thingsAction.deleteThingFinishedAction({ payload })),
-          catchError(error => of(error))
+          map((_) => thingsAction.deleteThingFinishedAction({ payload })),
+          catchError((error) => of(error))
         )
       )
     )
   );
-
 }

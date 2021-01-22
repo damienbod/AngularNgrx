@@ -6,25 +6,31 @@ import { Country } from './../../models/country';
 
 @Injectable()
 export class CountryService {
+  private headers: HttpHeaders;
 
-    private headers: HttpHeaders;
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders();
+    // this.headers = this.headers.set('Content-Type', 'application/json');
+    // this.headers = this.headers.set('Accept', 'application/json');
+  }
 
-    constructor(private http: HttpClient) {
+  getAll(): Observable<Country[]> {
+    return this.http.get<Country[]>('https://restcountries.eu/rest/v2/all', {
+      headers: this.headers,
+    });
+  }
 
-        this.headers = new HttpHeaders();
-        // this.headers = this.headers.set('Content-Type', 'application/json');
-        // this.headers = this.headers.set('Accept', 'application/json');
-    }
+  getAllPerRegion(region: string): Observable<Country[]> {
+    return this.http.get<Country[]>(
+      `https://restcountries.eu/rest/v2/region/${region}`,
+      { headers: this.headers }
+    );
+  }
 
-    getAll(): Observable<Country[]> {
-        return this.http.get<Country[]>('https://restcountries.eu/rest/v2/all', { headers: this.headers });
-    }
-
-    getAllPerRegion(region: string): Observable<Country[]> {
-        return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/region/${region}` , { headers: this.headers });
-    }
-
-    getAllPerSubRegion(subRegion: string): Observable<Country[]> {
-        return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/subregion/${subRegion}`, { headers: this.headers });
-    }
+  getAllPerSubRegion(subRegion: string): Observable<Country[]> {
+    return this.http.get<Country[]>(
+      `https://restcountries.eu/rest/v2/subregion/${subRegion}`,
+      { headers: this.headers }
+    );
+  }
 }

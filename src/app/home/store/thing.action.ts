@@ -1,9 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Thing } from './../../models/thing';
 
-export const getAllThingsAction = createAction(
-  '[Things] get Things'
-);
+export const getAllThingsAction = createAction('[Things] get Things');
 export const getAllThingsFinishedAction = createAction(
   '[Things] get Things Finished',
   props<{ payload: Thing[] }>()

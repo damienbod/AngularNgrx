@@ -2,10 +2,9 @@
 
 [![Build](https://github.com/damienbod/AngularNgrx/workflows/CI/badge.svg)](https://github.com/damienbod/AngularNgrx/actions?query=workflow%3ACI)
 
-
 https://damienbod.com/2017/09/07/getting-started-with-angular-and-redux/
 
-## History 
+## History
 
 2021-01-22 Updated to Angular 11.1.0, updated country ngrx store
 

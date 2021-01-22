@@ -1,9 +1,13 @@
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-import { HomeState } from "./home.state";
+import {
+  ActionReducerMap,
+  createFeatureSelector,
+  createSelector,
+} from '@ngrx/store';
+import { HomeState } from './home.state';
 
 export const homeStoreName = 'home';
 
-export const selectHomeStore = createFeatureSelector(homeStoreName)
+export const selectHomeStore = createFeatureSelector(homeStoreName);
 
 export const selectLoading = createSelector(
   selectHomeStore,

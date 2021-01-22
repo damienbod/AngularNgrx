@@ -2,9 +2,7 @@ import { Country } from './../../models/country';
 import { createAction, props } from '@ngrx/store';
 import { Region } from './../../models/region';
 
-export const getAllCountriesAction = createAction(
-  '[countries] get countries'
-);
+export const getAllCountriesAction = createAction('[countries] get countries');
 export const getAllCountriesFinishedAction = createAction(
   '[countries] get countries Finished',
   props<{ payload: Country[] }>()

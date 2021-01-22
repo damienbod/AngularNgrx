@@ -14,29 +14,25 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
 @NgModule({
-    imports: [
-        BrowserModule,
-        AppRoutes,
-        SharedModule,
-        CoreModule.forRoot(),
-        AboutModule,
-        HomeModule,
-        CountryModule,
-        StoreModule.forRoot({}),
-        StoreDevtoolsModule.instrument({
-          maxAge: 25, // Retains last 25 states
-          logOnly: environment.production, // Restrict extension to log-only mode
-        }),
-        EffectsModule.forRoot([])
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutes,
+    SharedModule,
+    CoreModule.forRoot(),
+    AboutModule,
+    HomeModule,
+    CountryModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    EffectsModule.forRoot([]),
+  ],
 
-    declarations: [
-        AppComponent
-    ],
+  declarations: [AppComponent],
 
-    bootstrap: [AppComponent],
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

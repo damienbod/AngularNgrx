@@ -6,7 +6,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 export const initialState: HomeState = {
   things: [],
   selectedThing: null,
-  loading: false
+  loading: false,
 };
 
 const thingsReducerInternal = createReducer(
@@ -20,38 +20,41 @@ const thingsReducerInternal = createReducer(
     thingsAction.getAllThingsFinishedAction,
     thingsAction.getThingAction,
     thingsAction.getThingFinishedAction,
-    state => ({
+    (state) => ({
       ...state,
-      loading: true
+      loading: true,
     })
   ),
   on(thingsAction.addThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    things: [...state.things, payload]
+    things: [...state.things, payload],
   })),
   on(thingsAction.getAllThingsFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    things: [...payload]
+    things: [...payload],
   })),
   on(thingsAction.getThingAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    selectedItem: payload
+    selectedItem: payload,
   })),
   on(thingsAction.getThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    things: [...state.things.filter(x => x !== payload)]
+    things: [...state.things.filter((x) => x !== payload)],
   })),
   on(thingsAction.deleteThingFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    things: [...state.things.filter(x => x !== payload)]
+    things: [...state.things.filter((x) => x !== payload)],
   }))
 );
 
-export function thingsReducer( state: HomeState | undefined, action: Action): any {
+export function thingsReducer(
+  state: HomeState | undefined,
+  action: Action
+): any {
   return thingsReducerInternal(state, action);
 }

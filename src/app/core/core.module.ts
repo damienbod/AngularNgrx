@@ -6,20 +6,13 @@ import { ThingService } from './services/thing-data.service';
 import { CountryService } from './services/country.service';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ]
+  imports: [CommonModule],
 })
-
 export class CoreModule {
-    static forRoot(): ModuleWithProviders<CoreModule> {
-        return {
-            ngModule: CoreModule,
-            providers: [
-                ThingService,
-                CountryService,
-                Configuration
-            ]
-        };
-    }
+  static forRoot(): ModuleWithProviders<CoreModule> {
+    return {
+      ngModule: CoreModule,
+      providers: [ThingService, CountryService, Configuration],
+    };
+  }
 }
