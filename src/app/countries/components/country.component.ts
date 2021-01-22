@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CountryState } from '../store/country.state';
-import * as CountryActions from '../store/country.action';
 import { Region } from './../../models/region';
 import { selectRegions } from '../store/country.selectors';
 import { getAllCountriesAction } from '../store/country.action';

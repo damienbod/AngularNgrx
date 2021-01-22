@@ -15,7 +15,3 @@ export const getRegionFinishedAction = createAction(
   '[Region] get Region Finished',
   props<{ payload: Region }>()
 );
-export const collapseRegionAction = createAction(
-  '[Region] collapse Region',
-  props<{ payload: Region }>()
-);

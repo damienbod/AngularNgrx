@@ -1,14 +1,9 @@
-import { select } from '@ngrx/store';
-
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import {
   catchError,
-  groupBy,
   map,
-  mergeMap,
-  reduce,
   switchMap,
 } from 'rxjs/operators';
 

@@ -1,5 +1,4 @@
 import { CountryState } from './country.state';
-import { Region } from './../../models/region';
 import * as countryAction from './country.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
@@ -11,7 +10,6 @@ export const initialState: CountryState = {
 const countryReducerInternal = createReducer(
   initialState,
   on(
-    countryAction.collapseRegionAction,
     countryAction.getAllCountriesAction,
     countryAction.getAllCountriesFinishedAction,
     countryAction.getRegionAction,
