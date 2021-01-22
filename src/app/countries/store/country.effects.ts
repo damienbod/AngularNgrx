@@ -18,25 +18,6 @@ export class CountryEffects {
     private actions$: Actions
   ) {}
 
-  getRegion$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(countryAction.getRegionAction),
-      switchMap((action) =>
-        this.countryService.getAllPerRegion(action.payload.name).pipe(
-          map((data: Country[]) => {
-            const region = {
-              name: action.payload.name,
-              expanded: true,
-              countries: data,
-            };
-            return countryAction.getRegionFinishedAction({ payload: region });
-          }),
-          catchError((error) => of(error))
-        )
-      )
-    )
-  );
-
   getCountries$ = createEffect(() =>
     this.actions$.pipe(
       ofType(countryAction.getAllCountriesAction),
