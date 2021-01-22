@@ -20,6 +20,7 @@ const thingsReducerInternal = createReducer(
     thingsAction.getAllThingsFinishedAction,
     thingsAction.getThingAction,
     thingsAction.getThingFinishedAction,
+    thingsAction.thingsErrorAction,
     (state) => ({
       ...state,
       loading: true,

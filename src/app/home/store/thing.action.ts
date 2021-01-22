@@ -30,3 +30,7 @@ export const getThingFinishedAction = createAction(
   '[Thing] get Thing Finished',
   props<{ payload: Thing }>()
 );
+export const thingsErrorAction = createAction(
+  '[Thing] things Error',
+  props<{ payload: any }>()
+);

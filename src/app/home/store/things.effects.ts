@@ -30,7 +30,7 @@ export class ThingsEffects {
       switchMap((payload) =>
         this.thingService.add(payload).pipe(
           map((todo) => thingsAction.addThingFinishedAction({ payload: todo })),
-          catchError((error) => of(error))
+          catchError(error => of(thingsAction.thingsErrorAction(error)))
         )
       )
     )
@@ -43,7 +43,7 @@ export class ThingsEffects {
       switchMap((payload) =>
         this.thingService.delete(payload.id).pipe(
           map((_) => thingsAction.deleteThingFinishedAction({ payload })),
-          catchError((error) => of(error))
+          catchError(error => of(thingsAction.thingsErrorAction(error)))
         )
       )
     )
