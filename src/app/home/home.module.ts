@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ThingsEffects } from './store/things.effects';
 import { thingsReducer } from './store/home.reducer';
+import { homeStoreName } from './store/home.selectors';
 
 @NgModule({
     imports: [
@@ -17,7 +18,7 @@ import { thingsReducer } from './store/home.reducer';
         FormsModule,
         HttpClientModule,
         HomeRoutes,
-        StoreModule.forFeature('home', thingsReducer),
+        StoreModule.forFeature(homeStoreName, thingsReducer),
         EffectsModule.forFeature([ThingsEffects])
     ],
 
