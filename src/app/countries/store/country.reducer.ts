@@ -22,7 +22,7 @@ const countryReducerInternal = createReducer(
   on(countryAction.getAllCountriesFinishedAction, (state, { payload }) => ({
     ...state,
     loading: false,
-    countries: [...state.countries, ...payload],
+    countries: [...payload],
   }))
 );
 
