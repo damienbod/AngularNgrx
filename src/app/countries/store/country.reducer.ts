@@ -1,41 +1,34 @@
 import { CountryState } from './country.state';
 import { Region } from './../../models/region';
 import * as countryAction from './country.action';
+import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: CountryState = {
-    regions: [
-        { name: 'Africa', expanded:  false, countries: [] },
-        { name: 'Americas', expanded: false, countries: [] },
-        { name: 'Asia', expanded: false, countries: [] },
-        { name: 'Europe', expanded: false, countries: [] },
-        { name: 'Oceania', expanded: false, countries: [] }
-    ]
+    countries: [],
+    loading: false
 };
 
-export function countryReducer(state = initialState, action: countryAction.Actions): CountryState {
-    switch (action.type) {
 
-        case countryAction.SELECTREGION_COMPLETE:
-            return Object.assign({}, state, {
-                regions: state.regions.map((item: Region) => {
-                    return item.name === action.region.name ? Object.assign({}, item, action.region ) : item;
-                })
-            });
+const countryReducerInternal = createReducer(
+  initialState,
+  on(
+    countryAction.collapseRegionAction,
+    countryAction.getAllCountriesAction,
+    countryAction.getAllCountriesFinishedAction,
+    countryAction.getRegionAction,
+    countryAction.getRegionFinishedAction,
+    state => ({
+      ...state,
+      loading: true
+    })
+  ),
+  on(countryAction.getAllCountriesFinishedAction, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    countries: [...state.countries, ...payload]
+  }))
+);
 
-        case countryAction.COLLAPSEREGION:
-            const regionNew = {
-              expanded: false,
-              name: action.region.name,
-              countries: [] // action.region.countries
-            };
-            return Object.assign({}, state, {
-                regions: state.regions.map((item: Region) => {
-                    return item.name === action.region.name ? Object.assign({}, item, regionNew ) : item;
-                })
-            });
-
-        default:
-            return state;
-
-    }
+export function countryReducer( state: CountryState | undefined, action: Action): any {
+  return countryReducerInternal(state, action);
 }

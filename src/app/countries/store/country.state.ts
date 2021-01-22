@@ -1,5 +1,7 @@
-import { Region } from './../../models/region';
+import { Country } from '../../models/country';
+import { Region } from '../../models/region';
 
 export interface CountryState {
-    regions: Region[];
+    countries: Country[]
+    loading: boolean;
 }

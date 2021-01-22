@@ -1,9 +1,9 @@
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { select } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { of, Observable } from 'rxjs';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, groupBy, map, mergeMap, reduce, switchMap } from 'rxjs/operators';
 
 import * as countryAction from './country.action';
 import { Country } from './../../models/country';
@@ -11,23 +11,34 @@ import { CountryService } from '../../core/services/country.service';
 
 @Injectable()
 export class CountryEffects {
+  constructor(private countryService: CountryService, private actions$: Actions) { }
 
-    @Effect()
-    getAllPerRegion$: Observable<Action> = this.actions$.pipe(
-        ofType<countryAction.SelectRegionAction>(countryAction.SELECTREGION),
-        switchMap((action: countryAction.SelectRegionAction) => {
-            return this.countryService.getAllPerRegion((action).region.name).pipe(
-                map((data: Country[]) => {
-                    const region = { name: (action as countryAction.SelectRegionAction).region.name, expanded: true, countries: data };
-                    return new countryAction.SelectRegionCompleteAction(region);
-                }),
-                catchError((error: any) => of(error)
-                ));
-        })
-    );
+  getRegion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(countryAction.getRegionAction),
+        switchMap(action =>
+          this.countryService.getAllPerRegion(action.payload.name).pipe(
+            map((data: Country[]) => {
+              const region = { name: action.payload.name, expanded: true, countries: data };
+              return countryAction.getRegionFinishedAction({payload: region});
+            }),
+            catchError(error => of(error))
+          )
+        )
+      )
+  );
 
-    constructor(
-        private countryService: CountryService,
-        private actions$: Actions
-    ) { }
+ getCountries$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(countryAction.getAllCountriesAction),
+        switchMap(action =>
+          this.countryService.getAll().pipe(
+            map((payload: Country[]) => countryAction.getAllCountriesFinishedAction({payload})),
+            catchError(error => of(error))
+          )
+        )
+      )
+  );
+
+
 }

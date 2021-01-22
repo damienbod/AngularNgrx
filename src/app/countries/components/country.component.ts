@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { CountryState } from '../store/country.state';
 import * as CountryActions from '../store/country.action';
 import { Region } from './../../models/region';
+import { selectRegions } from '../store/country.selectors';
+import { getAllCountriesAction } from '../store/country.action';
 
 @Component({
     selector: 'app-country-component',
@@ -16,17 +18,21 @@ export class CountryComponent {
 
     async: any;
 
-    regionsState$: Observable<CountryState>;
+    // { name: 'Africa', expanded:  false, countries: [] },
+    // { name: 'Americas', expanded: false, countries: [] },
+    // { name: 'Asia', expanded: false, countries: [] },
+    // { name: 'Europe', expanded: false, countries: [] },
+    // { name: 'Oceania', expanded: false, countries: [] }
+    allRegions$: Observable<Region[]>;
 
     constructor(private store: Store<any>) {
-      this.regionsState$ = this.store.select<CountryState>((state: any) => state.world);
+      this.allRegions$ = this.store.pipe(select(selectRegions));
+
+      this.store.dispatch(getAllCountriesAction())
     }
 
-    getCountries(region: Region): void {
-      this.store.dispatch(new CountryActions.SelectRegionAction(region));
+    toggleExpanded(region: Region): void {
+      region.expanded = !region.expanded;
     }
 
-    collapse(region: Region): void {
-      this.store.dispatch(new CountryActions.CollapseRegionAction(region));
-    }
 }
