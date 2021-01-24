@@ -8,7 +8,7 @@ import { CountryState } from './country.state';
 
 export const worldStoreName = 'world';
 
-export const selectWorldStore = createFeatureSelector(worldStoreName);
+export const selectWorldStore = createFeatureSelector<CountryState>(worldStoreName);
 
 export const selectLoading = createSelector(
   selectWorldStore,

@@ -6,7 +6,7 @@ import { HomeState } from './home.state';
 
 export const homeStoreName = 'home';
 
-export const selectHomeStore = createFeatureSelector(homeStoreName);
+export const selectHomeStore = createFeatureSelector<HomeState>(homeStoreName);
 
 export const selectLoading = createSelector(
   selectHomeStore,
